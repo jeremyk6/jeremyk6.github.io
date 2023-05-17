@@ -10,17 +10,25 @@ hide:
 
 # Présentation
 
-Je suis Jérémy Kalsron, doctorant au [Laboratoire d'Informatique, de Modélisation et d'Optimisation des Systèmes (LIMOS)](https://limos.fr) à Clermont-Ferrand. J'effectue ma thèse dans le cadre du projet ANR [ACTIVmap](https://activmap.limos.fr) au sein duquel je je travaille sur la description textuelle de carrefour pour les personnes concernées par la déficience visuelle. Dans ce contexte, je m'intéresse aux paradigmes de description, à la conception de modèles de données, et à l'analyse des données utiles du point de vue piéton notamment au sein d'OpenStreetMap.
+Je suis Jérémy Kalsron, doctorant au [Laboratoire d'Informatique, de Modélisation et d'Optimisation des Systèmes (LIMOS)](https://limos.fr) à Clermont-Ferrand. J'effectue ma thèse dans le cadre du projet ANR [ACTIVmap](https://activmap.limos.fr) au sein duquel je travaille sur la description textuelle de carrefour pour les personnes concernées par la déficience visuelle. Dans ce contexte, je m'intéresse aux paradigmes de description, à la conception de modèles de données, et à l'analyse des données utiles du point de vue piéton notamment au sein d'OpenStreetMap.
 
 ## Parcours universitaire
 
 Dans le cadre d'un BTS en informatique, je découvre la géomatique en 2013 lors d'un stage de six semaines au CRAIG. J'intègre en 2015 une Licence Professionnelle spécialisée en bases de données en alternance à la Direction Départementale des Territoires de la Creuse où, pendant un an, j'approfondis ma découverte des outils de la géomatique et des thématiques dont elle peut être au service, principalement la gestion de crise. Je poursuis en 2018 mon parcours au sein du Master Géonum où, à l'occasion de mon projet de fin d'étude, je m'intéresse plus spécifiquement aux données collaboratives liées à la mobilité. 
 
 #### Détail de mon parcours
+
 - Master Géonum, Université Jean Monnet à Saint-Étienne et Université Lyon 2, 2018-2020
 - Licence Professionnelle Administrateur de Réseaux et de Bases de Données, Université de Limoges, 2015-2016
 - BTS Systèmes Électroniques, Lycée Cabanis à Brive-la-Gaillarde, 2014-2015
 - BTS Informatique et Réseaux pour l'Industrie et les Services, Lycée Turgot à Limoges, 2012-2014
+
+## Expériences professionnelles passées
+
+- Stagiaire, LIMOS à Clermont-Ferrand, 2020 : Au sein du projet [ANR ACTIVmap](https://activmap.limos.fr), j'ai prototypé une méthode de description textuelle égocentrée accessible depuis [une page web](https://carrefours.activmap.limos.fr/old/) qui permettrait à une personne concernée par la déficience visuelle de naviguer virtuellement au sein d'un carrefour.
+- Stagiaire, LASTIG à Saint-Mandé, 2019 : Au sein du projet [ANR PICS](https://pics.ifsttar.fr/), pour améliorer l'exécution de simulation de crues, j'ai proposé des méthodes pour nettoyer le MNT des obstacles à l'écoulement.
+- Technicien informatique contractuel, SDIS 23 à Guéret, 2016-2018 : Pendant un an et demi, j'ai participé au support et à la maintenance des outils informatiques utilisés au SDIS. J'ai assisté au déploiement de plusieurs outils et ai occasionnellement réalisé des travaux cartographiques.
+- Apprenti géomaticien, DDT 23 à Guéret, 2015-2016 : J'ai développé plusieurs extensions QGIS pour en faciliter l'usage par des cadres de permanence en cellule de crise. J'ai également recensé et catalogué les données utiles à la gestion de crise, en pointant les données obsolètes, leur source, et éventuellement une nouvelle donnée à jour si disponible.
 
 ## Communications
 
