@@ -100,3 +100,4 @@ Dans le cadre d'un BTS en informatique, je découvre la géomatique en 2013 lors
 
 ## Autres activités
 - Participation à l'animation du groupe local d'utilisateur d'OpenStreetMap à Clermont-Ferrand (création d'une mailing list, organisation de rencontres, etc.)
+- Participation à plusieurs game jams, dont la Juice Jam II avec un [jeu pour Game Boy Advance](https://jeremyk6.github.io/piranha-crisis/).
