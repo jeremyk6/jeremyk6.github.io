@@ -4,20 +4,22 @@ hide:
   - navigation
 ---
 
-<div style="float: left">
-    <img src="images/profile.jpeg" style="height: 15em; width: auto; padding: 10%;" alt="Photo de profil" />
+<div style="display: flex; align-items: center;">
+  <div style="flex: 0 0 auto;">
+      <img src="images/profile.jpeg" style="height: 15em; width: auto; padding: 10%;" alt="Photo de profil" />
+  </div>
+  <div style="margin-left: 20px;">
+      <p>Je suis Jérémy Kalsron, géomaticien et docteur en informatique. Je suis passionné par les données géographiques ouvertes et les logiciels libres. Je contribue (très) occasionnellement à OpenStreetMap, me plaçant plutôt comme utilisateur des données, notamment dans le cadre de ma thèse. Je m'intéresse particulièrement aux mobilités douces. Vous trouverez mes réalisations sur mon <a href="https://github.com/jeremyk6">Github</a>.</p>
+  </div>
 </div>
-
-# Présentation
-
-Je suis Jérémy Kalsron, doctorant au [Laboratoire d'Informatique, de Modélisation et d'Optimisation des Systèmes (LIMOS)](https://limos.fr) à Clermont-Ferrand. J'effectue ma thèse dans le cadre du projet ANR [ACTIVmap](https://activmap.limos.fr) au sein duquel je travaille sur la description textuelle de carrefour pour les personnes concernées par la déficience visuelle. Dans ce contexte, je m'intéresse aux paradigmes de description, à la conception de modèles de données, et à l'analyse des données utiles du point de vue piéton notamment au sein d'OpenStreetMap.
 
 ## Parcours universitaire
 
-Dans le cadre d'un BTS en informatique, je découvre la géomatique en 2013 lors d'un stage de six semaines au CRAIG. J'intègre en 2015 une Licence Professionnelle spécialisée en bases de données en alternance à la Direction Départementale des Territoires de la Creuse où, pendant un an, j'approfondis ma découverte des outils de la géomatique et des thématiques dont elle peut être au service, principalement la gestion de crise. Je poursuis en 2018 mon parcours au sein du Master Géonum où, à l'occasion de mon projet de fin d'étude, je m'intéresse plus spécifiquement aux données collaboratives liées à la mobilité. 
+Dans le cadre d'un BTS en informatique, je découvre la géomatique en 2013 lors d'un stage de six semaines au CRAIG. J'intègre en 2015 une Licence Professionnelle spécialisée en bases de données en alternance à la Direction Départementale des Territoires de la Creuse où, pendant un an, j'approfondis ma découverte des outils de la géomatique et des thématiques dont elle peut être au service, principalement la gestion de crise. Je poursuis en 2018 mon parcours au sein du Master Géonum où, à l'occasion de mon projet de fin d'étude, je m'intéresse plus spécifiquement aux données collaboratives liées à la mobilité. Enfin, j'ai effectué ma thèse dans le cadre du projet ANR [ACTIVmap](https://activmap.limos.fr) au sein duquel j'ai travaillé sur la description textuelle de carrefour pour les personnes concernées par la déficience visuelle.
 
 #### Détail de mon parcours
 
+- Doctorat en informatique, LIMOS, Université Clermont Auvergne, 2020-2024
 - Master Géonum, Université Jean Monnet à Saint-Étienne et Université Lyon 2, 2018-2020
 - Licence Professionnelle Administrateur de Réseaux et de Bases de Données, Université de Limoges, 2015-2016
 - BTS Systèmes Électroniques, Lycée Cabanis à Brive-la-Gaillarde, 2014-2015
@@ -25,6 +27,7 @@ Dans le cadre d'un BTS en informatique, je découvre la géomatique en 2013 lors
 
 ## Expériences professionnelles passées
 
+- Doctorant, LIMOS à Clermont-Ferrand, 2020-2024: En poursuite de mon stage, je me suis intéressé à la génération automatique d'audiodescriptions de carrefours à destination de personnes déficientes visuelles. Dans ce contexte, j'ai notamment proposé des méthodes de traitement et de modélisation d'un graphe géographique applicables aux données issues d'OpenStreetMap.
 - Stagiaire, LIMOS à Clermont-Ferrand, 2020 : Au sein du projet [ANR ACTIVmap](https://activmap.limos.fr), j'ai prototypé une méthode de description textuelle égocentrée accessible depuis [une page web](https://carrefours.activmap.limos.fr/old/) qui permettrait à une personne concernée par la déficience visuelle de naviguer virtuellement au sein d'un carrefour.
 - Stagiaire, LASTIG à Saint-Mandé, 2019 : Au sein du projet [ANR PICS](https://pics.ifsttar.fr/), pour améliorer l'exécution de simulation de crues, j'ai proposé des méthodes pour nettoyer le MNT des obstacles à l'écoulement.
 - Technicien informatique contractuel, SDIS 23 à Guéret, 2016-2018 : Pendant un an et demi, j'ai participé au support et à la maintenance des outils informatiques utilisés au SDIS. J'ai assisté au déploiement de plusieurs outils et ai occasionnellement réalisé des travaux cartographiques.
@@ -32,6 +35,10 @@ Dans le cadre d'un BTS en informatique, je découvre la géomatique en 2013 lors
 - Stagiaire, CRAIG à Clermont-Ferrand, 2013 : J’ai contribué à l’implémentation d’un système d’onglets pour l’affichage des résultats de requêtes dans la visionneuse cartographique de l’Infrastructure de Données Spatiales geOrchestra en Javascript.
 
 ## Communications
+
+#### Thèse
+
+- Jérémy Kalsron. Génération automatique d'abstractions de carrefours pour les personnes concernées par la déficience visuelle. Université Clermont Auvergne, 2024. [⟨tel-04845483⟩](https://theses.hal.science/tel-04845483v1)
 
 #### Publications scientifiques
 
@@ -44,13 +51,13 @@ Dans le cadre d'un BTS en informatique, je découvre la géomatique en 2013 lors
 
 #### Rapports de stages
 
-- [La mobilité au sein d’un carrefour pour une personne en situation de déficience visuelle](https://activmap.limos.fr/files/rapport-LIMOS-2020-J%C3%A9r%C3%A9my-Kalsron.pdf), M2 Géonum, 2020
-- [Construction de MNE adaptés à la simulation d'inondations](https://kdrive.infomaniak.com/app/share/427161/a88a8a9d-4731-41c6-ab7e-fead75a38206), M1 Géonum, 2019
-- [Amélioration de la valise de permanence utilisée en cellule de crise](https://kdrive.infomaniak.com/app/share/427161/ae3ffe6a-a635-45ff-831f-d52aff9b03d0), LP ARBD, 2016
+- [La mobilité au sein d’un carrefour pour une personne en situation de déficience visuelle](resources/Memoire_KALSRON_M2_2020.pdf), M2 Géonum, 2020
+- [Construction de MNE adaptés à la simulation d'inondations](resources/Memoire_KALSRON_M1_2019.pdf), M1 Géonum, 2019
+- [Amélioration de la valise de permanence utilisée en cellule de crise](resources/Memoire_KALSRON_LP_2016.pdf), LP ARBD, 2016
 
 #### Rapports de projets
 
-- [OSCO : OSCO Sécurise et Contribue à OSM](https://kdrive.infomaniak.com/app/share/427161/81e55e5c-0f23-4d87-9e73-b6f9232f0668) ([pitch vidéo](https://www.youtube.com/watch?v=ODarDwlvfNs)), M2 Géonum, 2020
+- [OSCO : OSCO Sécurise et Contribue à OSM](resources/Rapport_OSCO_M2_2020.pdf) ([pitch vidéo](https://www.youtube.com/watch?v=ODarDwlvfNs)), M2 Géonum, 2020
 
 #### Autres communications
 
