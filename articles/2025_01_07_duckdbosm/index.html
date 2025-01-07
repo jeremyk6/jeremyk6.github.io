@@ -1,0 +1,282 @@
+<!doctype html>
+<html>
+    <head>
+                <title>DuckDB et OSM - Jérémy Kalsron</title>
+
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            
+            <link rel="canonical" href="https://jeremyk6.github.io/articles/2025_01_07_duckdbosm/">
+            <meta name="author" content="Jérémy Kalsron">
+
+            
+                <link  rel="icon" type="image/x-icon" href="../../images/favicon.png">
+            
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+                        <script>hljs.initHighlightingOnLoad();</script>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+            <link rel="stylesheet" href="../../assets/css/main.min.css">
+                <script src="../../search/main.js"></script>
+
+            
+                
+            
+    </head>
+
+    <body>
+        <div class="container py-3">
+            <header>
+                    <!-- block header -->
+<nav class="navbar navbar-expand-xl border-bottom">
+    <div class="container-fluid">
+        
+            <img class="logo" src="../../images/logo.png">
+        
+
+        
+            <span class="normal fs-4 title-color site-name" id="component-site-name" style="text-transform: uppercase;">Jérémy Kalsron</span>
+        
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
+            aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
+            <ul class="navbar-nav">
+
+                <!-- block menu -->
+                <li class="nav-item">
+                    <!-- block menu -->
+    
+        <li class="nav-item" id="component-menu">
+            <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../..">[Articles]</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[À Propos]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../about/" class="dropdown-item text-decoration-none ">Qui suis-je ?</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../cv/" class="dropdown-item text-decoration-none ">CV</a>
+    </li>
+<!-- endblock -->
+                            </ul>
+                        </li>
+            </ul>
+        </li>
+<!-- endblock -->
+                </li>
+
+                <!-- block repo -->
+                <li class="nav-item">
+                    <a href="https://github.com/jeremyk6">
+                        <div class="md-source-repo-icon">
+                            <i class="fa fa-github-alt" aria-hidden="true"></i>
+                        </div>
+                    </a>
+                </li>
+
+                <!-- endblock -->
+
+                <!-- block search -->
+                <li class="nav-item">
+                    <a class="collapsed" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <div class="md-search-icon">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </div>
+                    </a>
+                </li>
+                <!--  endblock -->
+
+                <!-- block source -->
+                <li class="nav-item">
+                    
+                </li>
+                <!--  endblock -->
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--  endblock -->
+            </header>
+
+            <main><!-- block search -->
+<div class="collapse" id="collapseExample">
+    <div role="search" class="search-box">
+        <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+            <input type="text" name="q" class="search-query"
+            placeholder="Search docs" title="Type search term here" />
+        </form>
+    </div>
+</div>
+<!-- endblock -->
+                    <!-- block content -->
+<section class="container post">
+    <article>
+        <header>
+            
+            
+        </header>
+        <p><h1 id="duckdb-et-osm">DuckDB et OSM</h1>
+<p>J'ai découvert DuckDB en même temps que l'outil QuackOSM grâce à <a href="https://m-weigand.de/posts/07_duckdb-a_game_changer_for_analyzing_openstreetmap">cet article</a> de Matthias Weigand. Cet article/prise de note reprend donc énormément du sien.</p>
+<h2 id="cest-quoi-duckdb">C'est quoi DuckDB ?</h2>
+<p>DuckDB est un SGBDR qui à l'instar de SQLite/Spatialite ne repose pas (nécessairement) sur un serveur et peut être embarqué dans un script ou une application. Une base de données est ainsi un simple fichier portable d'extension <code>.duckdb</code>. Au contraire de SQLite, il est optimisé pour l'analyse et on peut donc charger dans cet objectif un gros volume de données dans une base. </p>
+<p>Sous macOS, on peut l'installer avec Homebrew:</p>
+<pre><code class="language-sh">brew install duckdb
+</code></pre>
+<h2 id="analyser-openstreetmap">Analyser OpenStreetMap</h2>
+<p>DuckDB, à l'instar de PostgreSQL, dispose d'une extension spatiale et permet donc de traiter facilement des données géographiques. Pour l'installer et l'activer, on peut lancer DuckDB (<code>duckdb</code>) puis faire:</p>
+<pre><code class="language-sql">D INSTALL spatial;
+D LOAD spatial;
+</code></pre>
+<p>L'extension spatiale dispose d'une fonction permettant d'ouvrir et d'exécuter des requêtes directement sur un fichier <code>.osm.pbf</code> ! C'est une possibilité intéressante, mais un peu trop "brute": on ne dispose que de la géométrie des nodes, et il faut alors recomposer soi-même celle des ways et des relations.</p>
+<p>Pour répondre à cette problématique, Matthias Weigand présente l'outil Python QuackOSM. C'est un peu un équivalent à osm2pgsql côté PostgreSQL, mais pour DuckDB: il permet la transformation d'un fichier <code>.osm.pbf</code> en Geoparquet, chargeable facilement dans DuckDB. QuackOSM crée une unique table qui contient pour chaque entité son id OSM, ses tags sous la forme d'une liste de listes et sa géométrie recomposée (simple ou multiple).</p>
+<p>Pour installer QuackOSM:</p>
+<pre><code class="language-sh">pip install quackosm[cli]
+</code></pre>
+<h3 id="charger-des-donnees-osm-dans-duckdb">Charger des données OSM dans DuckDB</h3>
+<p>On trouve le monde entier au format <code>.osm.pbf</code> découpé par région sur <a href="https://download.geofabrik.de/">Geofabrik</a>. On pourrait prendre une région plus petite, automatiquement moins gourmande, mais ici on va travailler sur la France entière:</p>
+<pre><code class="language-sh">curl https://download.geofabrik.de/europe/france-latest.osm.pbf -O
+</code></pre>
+<p>On transforme le fichier OSM en fichier Geoparquet avec QuackOSM:</p>
+<pre><code class="language-sh">quackosm france-latest.osm.pbf
+</code></pre>
+<p>La transformation est <em>longue</em>. De mon côté, il a fallu patienter environ 22 minutes. À la fin, QuackOSM crée le fichier <code>files/france-latest_nofilter_noclip_compact.geoparquet</code>.</p>
+<p>On crée une base de données dans le fichier <code>osm.duckdb</code> (si on ne crée pas de fichier, la base sera temporaire):</p>
+<pre><code class="language-sh">duckdb osm.duckdb
+</code></pre>
+<p>Enfin, on charge le Geoparquet dans une nouvelle table <code>osm</code>:</p>
+<pre><code class="language-sql">D CREATE TABLE osm AS
+SELECT * 
+FROM read_parquet('files/france-latest_nofilter_noclip_compact.geoparquet');
+</code></pre>
+<h3 id="interroger-les-donnees">Interroger les données</h3>
+<p>La table <code>osm</code> créée précédemment embarque 3 champs:</p>
+<pre><code class="language-sql">D DESCRIBE osm;
+┌─────────────┬───────────────────────┬─────────┬─────────┬─────────┬─────────┐
+│ column_name │      column_type      │  null   │   key   │ default │  extra  │
+│   varchar   │        varchar        │ varchar │ varchar │ varchar │ varchar │
+├─────────────┼───────────────────────┼─────────┼─────────┼─────────┼─────────┤
+│ feature_id  │ VARCHAR               │ YES     │         │         │         │
+│ tags        │ MAP(VARCHAR, VARCHAR) │ YES     │         │         │         │
+│ geometry    │ GEOMETRY              │ YES     │         │         │         │
+└─────────────┴───────────────────────┴─────────┴─────────┴─────────┴─────────┘
+Run Time (s): real 0.005 user 0.001717 sys 0.003183
+</code></pre>
+<p>Le champ tags est en fait un dictionnaire de listes. Pour appeler la valeur d'un tag, on peut faire <code>tags['key'][1]</code>. On peut aussi, pour vérifier sa valeur, utiliser la fonction <code>list_contains(tags['key'], 'value')</code>.</p>
+<p>Ici, un exemple de requête pour obtenir le nombre de boulangeries par région:</p>
+<pre><code class="language-sql">D WITH regions as (
+    SELECT tags['name'] as name, geometry 
+    FROM osm 
+    WHERE list_contains(tags['admin_level'], '4') AND list_contains(tags['boundary'], 'administrative') AND ST_GeometryType(geometry) IN ['POLYGON','MULTIPOLYGON']
+)
+SELECT name[1] as region_name, COUNT(*) as nb_boulangeries, regions.geometry
+FROM osm
+INNER JOIN regions ON ST_CONTAINS(regions.geometry, osm.geometry)
+WHERE list_contains(osm.tags['shop'], 'bakery')
+GROUP BY region_name, regions.geometry;
+</code></pre>
+<p>Résultat:</p>
+<pre><code class="language-sql">┌──────────────────────┬─────────────────┬─────────────────────────────────────┐
+│     region_name      │ nb_boulangeries │              geometry               │
+│       varchar        │      int64      │              geometry               │
+├──────────────────────┼─────────────────┼─────────────────────────────────────┤
+│ Grand Est            │            2254 │ POLYGON ((3.3843811 48.4780187, 3…  │
+│ Centre-Val de Loire  │            1072 │ POLYGON ((0.053532 47.1993113, 0.…  │
+│ Normandie            │            1543 │ MULTIPOLYGON (((0.1341337 49.4285…  │
+│ Corse                │             171 │ MULTIPOLYGON (((9.4716379 42.9833…  │
+│ Pays de la Loire     │            1753 │ MULTIPOLYGON (((-2.3071691 47.025…  │
+│ Nouvelle-Aquitaine   │            2975 │ MULTIPOLYGON (((-1.7827806 43.359…  │
+│ Bretagne             │            1615 │ MULTIPOLYGON (((-1.8268825 48.681…  │
+│ Île-de-France        │            4388 │ POLYGON ((1.447346 49.0535756, 1.…  │
+│ Hauts-de-France      │            1882 │ MULTIPOLYGON (((1.6610204 50.1794…  │
+│ Auvergne-Rhône-Alpes │            3925 │ POLYGON ((2.063551 44.9766576, 2.…  │
+│ Occitanie            │            2885 │ MULTIPOLYGON (((-0.3252919 42.916…  │
+│ Bourgogne-Franche-…  │            1481 │ POLYGON ((2.8444817 47.5448761, 2…  │
+│ Provence-Alpes-Côt…  │            2386 │ MULTIPOLYGON (((7.3923513 43.7200…  │
+├──────────────────────┴─────────────────┴─────────────────────────────────────┤
+│ 13 rows                                                            3 columns │
+└──────────────────────────────────────────────────────────────────────────────┘
+Run Time (s): real 17.081 user 48.228187 sys 14.968477
+</code></pre>
+<p>Il est possible d'exporter le résultat de la requête en GeoJSON:</p>
+<pre><code class="language-sql">COPY (
+    WITH regions as (
+    SELECT tags['name'] as name, geometry 
+    FROM osm 
+    WHERE list_contains(tags['admin_level'], '4') AND list_contains(tags['boundary'], 'administrative') AND ST_GeometryType(geometry) IN ['POLYGON','MULTIPOLYGON']
+    )
+    SELECT name[1] as region_name, COUNT(*) as nb_boulangeries, regions.geometry
+    FROM osm
+    INNER JOIN regions ON ST_CONTAINS(regions.geometry, osm.geometry)
+    WHERE list_contains(osm.tags['shop'], 'bakery')
+    GROUP BY region_name, regions.geometry
+) 
+TO 'output.geojson'
+WITH (FORMAT GDAL, DRIVER 'GeoJSON', LAYER_CREATION_OPTIONS 'WRITE_BBOX=YES');
+</code></pre>
+<p>En suivant le même schéma, on peut exporter dans d'autres formats supportés par le driver GDAL, comme le Geopackage (Driver <code>'GPKG'</code>).</p>
+<h2 id="a-noter">⚠️ À noter</h2>
+<h3 id="empreinte-memoire">Empreinte mémoire</h3>
+<p>En chargeant une grosse donnée (par exemple, la France entière), DuckDB va prendre ses aises en RAM. On peut limiter la quantité utilisée par DuckDB sur chaque session:</p>
+<pre><code class="language-sql">SET memory_limit='2GB';
+</code></pre>
+<p>Avec 2 GB, les performances restent similaires à une ou deux secondes près sur ma machine et je n'ai pas rencontré de problème d'allocation.</p>
+<h3 id="temps-dexecution">Temps d'exécution</h3>
+<p>On peut activer l'affichage du temps d'exécution de chaque requête de la session avec la commande:</p>
+<pre><code class="language-sql">.timer on
+</code></pre></p>
+    </article>
+</section>
+<!-- endblock -->
+            </main>
+
+            
+                    <!-- block preview -->
+<!-- endblock -->
+            
+
+            
+                    <!-- block footer -->
+<footer class="pt-4 my-md-5 pt-md-5 border-top" id="component-footer">
+    <div class="row">
+        <div class="col-12 col-md">
+                <!-- block copyright -->
+
+    <small class="d-block mb-3">
+        Made with
+        <a href="https://github.com/FernandoCelmer/mkdocs-simple-blog" target="_blank" rel="noopener">
+            Simple Blog for MkDocs
+        </a>
+    </small>
+
+<!-- endblock -->
+        </div>
+    </div>
+</footer>
+<!-- endblock -->
+            
+        </div>
+
+            <script>var base_url = '../..';</script>
+            <script src="../../assets/js/jquery-3.3.1.slim.min.js""></script>
+            <script src="../../assets/js/bootstrap.bundle.min.js""></script>
+            <script src="../../assets/js/main.min.js""></script>
+                <script src="../../search/main.js" defer></script>
+
+    </body>
+
+</html>
