@@ -1,5 +1,40 @@
 site_name: Jérémy Kalsron
+site_author: Jérémy Kalsron
+site_url: https://jeremyk6.github.io
 
 theme:
-  name: material
-  language : fr
+  name: simple-blog
+  custom_dir: custom_theme
+  favicon: images/favicon.png
+  logo: images/logo.png
+  theme_style: light
+  site_name_style: normal
+  title_style: bold
+  colors:
+    text: black
+    title: black
+    primary: black
+    background: white
+  components:
+    site_name: true
+    title: false
+    menu: true
+    preview: false
+    footer: true
+
+plugins:
+  - search
+  - rss:
+      categories:
+        - article
+  - blogging:
+      dirs: 
+        - articles
+      features:
+        tags: {}
+
+nav:
+  - Articles: index.md
+  - À Propos: 
+      - Qui suis-je ?: about.md
+      - CV: cv.md
