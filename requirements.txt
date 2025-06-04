@@ -1,0 +1,5 @@
+mkdocs
+mkdocs-simple-blog
+mkdocs-blogging-plugin
+mkdocs-rss-plugin
+markdown-exec[ansi]

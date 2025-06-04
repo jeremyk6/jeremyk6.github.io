@@ -27,12 +27,18 @@
 
 #### Publications scientifiques
 
-- Guillaume Touya, Samuel Braikeh, Ridley Campbell, Jean-Marie Favreau, Jérémy Kalsron. A Web GIS to Generate Audio-Tactile Maps for Visually Impaired People. EuroCarto 2022, Sep 2022, Vienna, Austria. pp.115, [⟨10.5194/ica-abs-5-115-2022⟩](https://dx.doi.org/10.5194/ica-abs-5-115-2022). [⟨hal-03788356⟩](https://hal.science/hal-03788356v1)
-- Jérémy Kalsron, Jean-Marie Favreau, Guillaume Touya. CrossroadsDescriber – Automatic Textual Description of OpenStreetMap Intersections. AGILE: GIScience Series, 2022, 3, pp.40. [⟨10.5194/agile-giss-3-40-2022⟩](https://dx.doi.org/10.5194/agile-giss-3-40-2022). [⟨hal-03694759⟩](https://hal.science/hal-03694759v1)
-- Jean-Marie Favreau, Jérémy Kalsron. What are intersections for pedestrian users?. AGILE: GIScience Series, 2022, 3, pp.1-15. [⟨10.5194/agile-giss-3-4-2022⟩](https://dx.doi.org/10.5194/agile-giss-3-4-2022). [⟨hal-03694743⟩](https://hal.science/hal-03694743v1)
-- Jean-Marie Favreau, Guillaume Touya, Jérémy Kalsron. Schematizing Crossroads from Abstract Textual Descriptions. CompCarto 2022, University of Bonn, Germany, May 2022, Bonn, Germany. [⟨hal-03677334⟩](https://hal.science/hal-03677334v1)
-- Jérémy Kalsron, Jean-Marie Favreau, Guillaume Touya. Le carrefour dont vous êtes le héros. CartoMob : Tous (im)mobiles, tous cartographes ?, Jun 2021, Toulouse, France. [⟨hal-03263324⟩](https://hal.science/hal-03263324v1)
-- Jérémy Kalsron, Jean-Marie Favreau, Guillaume Touya. Le carrefour dont vous êtes le héros : Description de carrefours pour les personnes déficientes visuelles. Spatial Analysis and Geomatics (SAGEO) 2021, May 2021, La Rochelle, France. [⟨hal-03263279⟩](https://hal.science/hal-03263279v1)
+```python exec="on"
+import requests
+response = requests.get("https://api.archives-ouvertes.fr/search/?q=authLastName_s:Kalsron&authFirstName_s:Jérémy&wt=json&sort=publicationDate_tdate%20asc")
+data = response.json()
+data.get('response', {}).get('docs', [])
+for doc in data["response"]["docs"]:
+    parts = doc["label_s"].split(".")
+    title =".".join(parts[:-1])
+    hal_id = parts[-1]
+    url = doc["uri_s"]
+    print("- %s [%s](%s)" % (title, hal_id, url))
+```
 
 #### Rapports de stages
 
