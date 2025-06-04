@@ -33,11 +33,12 @@ response = requests.get("https://api.archives-ouvertes.fr/search/?q=authLastName
 data = response.json()
 data.get('response', {}).get('docs', [])
 for doc in data["response"]["docs"]:
-    parts = doc["label_s"].split(".")
-    title =".".join(parts[:-1])
-    hal_id = parts[-1]
-    url = doc["uri_s"]
-    print("- %s [%s](%s)" % (title, hal_id, url))
+    if "Génération automatique d'abstractions de carrefours pour les personnes concernées par la déficience visuelle." not in doc["label_s"]:
+        parts = doc["label_s"].split(".")
+        title =".".join(parts[:-1])
+        hal_id = parts[-1]
+        url = doc["uri_s"]
+        print("- %s [%s](%s)" % (title, hal_id, url))
 ```
 
 #### Rapports de stages
